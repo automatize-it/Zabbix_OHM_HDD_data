@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2022-05-13T19:17:04Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>OHM HDD data template</template>
+            <name>OpenHardwareMonitor Physical Data Drives data collection</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>OHM Physical drives discovery</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>ohm.hdd[hddd]</key>
+                    <delay>1d</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>OHM Physical Drive {#HDD.ID} temperature °C</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>ohm.hdd[tc,{#HDD.ID}]</key>
+                            <value_type>FLOAT</value_type>
+                            <units>°C</units>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last(#2)}&gt;45</expression>
+                                    <name>OHM Physical Drive temperature</name>
+                                    <priority>WARNING</priority>
+                                    <manual_close>YES</manual_close>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
