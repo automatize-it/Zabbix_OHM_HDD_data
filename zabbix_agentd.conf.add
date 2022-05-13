@@ -1,0 +1,1 @@
+UserParameter=ohm.hdd[*],C:\Zabbix\Agent\scrpts\ohmGetHddData.cmd $1 $2
